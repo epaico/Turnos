@@ -41,7 +41,7 @@ namespace Turnos.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Edit(int id, [Bind("IdEspecialidad,Description")] Especialidad especialidad)
-        {
+        {            
             if (id != especialidad.IdEspecialidad)
             {
                 return NotFound();
@@ -97,6 +97,8 @@ namespace Turnos.Controllers
 
             return View();
         }
+
+       
 
     }
 }
