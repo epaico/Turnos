@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Turnos.Models;
 
 namespace Turnos.Models
 {
@@ -16,6 +17,10 @@ namespace Turnos.Models
         
         public DbSet<Especialidad> Especialidad { get; set; }
         public DbSet<Paciente> Paciente { get; set; }
+        public DbSet<Medico> Medico { get; set; }
+        public DbSet<MedicoEspecialidad> MedicoEspecialidad { get; set; }
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -59,7 +64,59 @@ namespace Turnos.Models
                 .HasMaxLength(100)
                 .IsUnicode(false);
             });
+
+            modelBuilder.Entity<Medico>(entidad =>
+            {
+                entidad.ToTable("Medico");
+                entidad.HasKey(m => m.IdMedico);
+
+                entidad.Property(m => m.Nombre)
+                .IsRequired()
+                .HasMaxLength(50)
+                .IsUnicode(false);
+
+                entidad.Property(m => m.Apellido)
+                .IsRequired()
+                .HasMaxLength(50)
+                .IsUnicode(false);
+
+                entidad.Property(m => m.Direccion)
+                .IsRequired()
+                .HasMaxLength(250)
+                .IsUnicode(false);
+
+                entidad.Property(m => m.Telefono)
+                .IsRequired()
+                .HasMaxLength(50)
+                .IsUnicode(false);
+
+                entidad.Property(m => m.Email)
+                .IsRequired()
+                .HasMaxLength(50)
+                .IsUnicode(false);
+
+                entidad.Property(m => m.HorarioAtencionDesde)
+                .IsRequired()                
+                .IsUnicode(false);
+
+                entidad.Property(m => m.HorarioAtencionHasta)
+                .IsRequired()
+                .IsUnicode(false);
+
+            });
+
+            modelBuilder.Entity<MedicoEspecialidad>().HasKey(x => new { x.IdMedico, x.IdEspecialidad });
+
+            modelBuilder.Entity<MedicoEspecialidad>().HasOne(x => x.Medico)
+                .WithMany(p => p.MedicoEspecialidad)
+                .HasForeignKey(p => p.IdMedico);
+
+            modelBuilder.Entity<MedicoEspecialidad>().HasOne(x => x.Especialidad)
+                .WithMany(p => p.MedicoEspecialidad)
+                .HasForeignKey(p => p.IdEspecialidad);
         }
+
+        
 
     }
 }

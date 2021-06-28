@@ -10,6 +10,7 @@ namespace Turnos.Models
     {
         [Key]
         public int IdEspecialidad { get; set; }
-        public string Description { get; set; } 
+        public string Description { get; set; }
+        public List<MedicoEspecialidad> MedicoEspecialidad { get; set; }
     }
 }
