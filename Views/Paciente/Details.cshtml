@@ -1,25 +1,23 @@
 ﻿@model Turnos.Models.Paciente
 
 <h4>Paciente</h4>
-<div>
-    <dl>
-        <dt>@Html.DisplayNameFor(modelo => modelo.Nombre)</dt>
-        <dd>@Html.DisplayFor(modelo => modelo.Nombre)</dd>
 
-        <dt>@Html.DisplayNameFor(modelo => modelo.Apellido)</dt>
-        <dd>@Html.DisplayFor(modelo => modelo.Apellido)</dd>
+<div class="row">
+    <div class="col s12 m6">
+        <div class="card hoverable">
+            <div class="card-content">
+                <span class="card-title">@Html.DisplayFor(modelo => modelo.Nombre), @Html.DisplayFor(modelo => modelo.Apellido)</span>
+                <dl class="row">
+                    <dt>@Html.DisplayNameFor(modelo => modelo.Direccion) : @Html.DisplayFor(modelo => modelo.Direccion)</dt>
+                    <dt>@Html.DisplayNameFor(modelo => modelo.Telefono) : @Html.DisplayFor(modelo => modelo.Telefono)</dt>
+                    <dt>@Html.DisplayNameFor(modelo => modelo.Email) : @Html.DisplayFor(modelo => modelo.Email)</dt>
+                </dl>
 
-        <dt>@Html.DisplayNameFor(modelo => modelo.Direccion)</dt>
-        <dd>@Html.DisplayFor(modelo => modelo.Direccion)</dd>
-
-        <dt>@Html.DisplayNameFor(modelo => modelo.Telefono)</dt>
-        <dd>@Html.DisplayFor(modelo => modelo.Telefono)</dd>
-
-        <dt>@Html.DisplayNameFor(modelo => modelo.Email)</dt>
-        <dd>@Html.DisplayFor(modelo => modelo.Email)</dd>
-    </dl>
+            </div>
+            <div class="card-action">
+                <a asp-action="Edit" asp-route-id="@Model.IdPaciente" class="btn green">Editar</a>
+                <a asp-action="Index" class="right">Volver</a>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.IdPaciente">Editar</a>
-</div>
-<a asp-action="Index">Volver</a>

@@ -1,9 +1,11 @@
 ﻿@model IEnumerable<Turnos.Models.Paciente>
 
-<a asp-action="Create">Nuevo</a>
+<p>
+   <a asp-action="Create" class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">person_add_alt</i></a>
+</p>
 
-<table>
-    <thead>
+<table class="responsive-table highlight z-depth-3">
+    <thead class="lime accent-3">
         <tr>
             <th>@Html.DisplayNameFor(model => model.Nombre)</th>
             <th>@Html.DisplayNameFor(model => model.Apellido)</th>
@@ -13,7 +15,7 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="lime lighten-5">
         @foreach (var item in Model)
         {
             <tr>
@@ -23,9 +25,9 @@
                 <td>@Html.DisplayFor(v => item.Telefono)</td>
                 <td>@Html.DisplayFor(v => item.Email)</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.IdPaciente">Editar</a>
-                    <a asp-action="Details" asp-route-id="@item.IdPaciente">Detalle</a>
-                    <a asp-action="Delete" asp-route-id="@item.IdPaciente">Eliminar</a>
+                    <a asp-action="Edit" asp-route-id="@item.IdPaciente"><i class="material-icons">edit</i></a>
+                    <a asp-action="Details" asp-route-id="@item.IdPaciente"><i class="material-icons">more_horiz</i></a>
+                    <a asp-action="Delete" asp-route-id="@item.IdPaciente"><i class="material-icons red-text">delete</i></a>
                 </td>
             </tr>
         }
