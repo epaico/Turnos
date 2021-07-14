@@ -44,7 +44,7 @@ namespace Turnos
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
+            if(env.IsProduction())
             {
                 app.UseExceptionHandler("/Home/Error");
             }
